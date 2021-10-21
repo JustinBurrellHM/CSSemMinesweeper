@@ -11,7 +11,7 @@ def generate_board(n,m,k):
         array[x][y] = "M"
     return array
 
-game_board = generate_board(6,6,6)
+game_board = generate_board(12,12,12)
 
 
 def print_board(l):

@@ -5,16 +5,21 @@ class Minesweeper:
     #     self.m = 0
     #     self.k = 0
 
-    def difficulty():
-        diff = input("choose a difficulty: ")
-        if diff == 
-
     def generate_board(n,m,k):
         array = [[0 for i in range(n)] for i in range(m)]
         for i in range(0,k):
             x, y = random.randint(0,n-1), random.randint(0,m-1)
             array[x][y] = "M"
         return array
+    
+    def difficulty():
+        diff = input("choose a difficulty: ")
+        if diff == "Easy":
+            print(generate_board(6,6,6))
+        elif diff == "Medium":
+            print(generate_board(12,12,10))
+        elif diff == "Hard":
+            print(generate_board(16,16,16))
 
     def print_board(l):
         for row in l:
