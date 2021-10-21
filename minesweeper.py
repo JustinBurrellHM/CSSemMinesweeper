@@ -9,7 +9,10 @@ class Minesweeper:
         array = [[0 for i in range(n)] for i in range(m)]
         for i in range(0,k):
             x, y = random.randint(0,n-1), random.randint(0,m-1)
+            while array[x][y] == "M":
+                x, y = random.randint(0,n-1), random.randint(0,m-1)
             array[x][y] = "M"
+
         return array
     
     def difficulty():

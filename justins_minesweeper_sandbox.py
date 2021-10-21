@@ -3,19 +3,19 @@ def generate_board(n,m,k):
     array = [[0 for i in range(n)] for i in range(m)]
     for i in range(0,k):
         x, y = random.randint(0,n-1), random.randint(0,m-1)
-        '''
-        if the x and y values are the same
-            randomly pick another x and y 
-        do this until they are the same
-        '''
+        while array[x][y] == "M":
+            x, y = random.randint(0,n-1), random.randint(0,m-1)
         array[x][y] = "M"
+
     return array
 
-game_board = generate_board(12,12,12)
+game_board = generate_board(5,6,3)
+
+# def count_mines(a):
 
 
-def print_board(l):
-    for row in l:
+def print_board(a):
+    for row in a:
         for col in row:
             print(col, end=' ')
         print()
@@ -23,12 +23,4 @@ def print_board(l):
 
 
 print(print_board(game_board))
-
-'''
-[0,0,0,0]
-[0,0,M,0]
-[0,0,0,0]
-[0,M,0,0]
-[0,0,0,0]
-'''
 
