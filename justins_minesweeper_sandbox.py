@@ -10,12 +10,26 @@ def generate_board(n, m, k):
 
     return array
 
-
 game_board = generate_board(5, 6, 3)
 
-def count_mines(x,y):
-    
+def evaluate_mines(x,y):
+    #counter variable 
+    counter = 0
+    #iterate through all the potential points
+    #if that specific coordinate equals M
+    # add one to counter
+    #turn the original coordinate to counter
+'''
+[x-1, y-1], [x-1, y], [x-1, y+1],
+[x, y-1], [x, y], [x+1, y+1]
+[x+1, y-1], [x+1, y], [x+1, y+1]
 
+'''
+
+# def count_mines(a):
+    #for each coordinate in the array
+    #run evaluate_mines()
+    #return new array
 
 def print_board(a):
     for row in a:
@@ -27,7 +41,3 @@ def print_board(a):
 
 print(print_board(game_board))
 
-[1, 1]
-[x-1, y-1], [x-1, y], [x-1, y+1],
-[x, y-1], [x, y], [x+1, y+1]
-[x+1, y-1], [x+1, y], [x+1, y+1]
