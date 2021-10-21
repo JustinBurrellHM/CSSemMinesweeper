@@ -5,7 +5,7 @@ def generate_board(n, m, k):
     array = [[0 for i in range(n)] for i in range(m)]
     for i in range(0, k):
         y, x = random.randint(0, n-1), random.randint(0, m-1)
-        while array[x][y] == "M" & x:
+        while array[x][y] == "M":
             y, x = random.randint(0, n-1), random.randint(0, m-1)
         array[x][y] = "M"
 
@@ -26,3 +26,8 @@ def print_board(a):
 
 
 print(print_board(game_board))
+
+[1, 1]
+[x-1, y-1], [x-1, y], [x-1, y+1],
+[x, y-1], [x, y], [x+1, y+1]
+[x+1, y-1], [x+1, y], [x+1, y+1]
