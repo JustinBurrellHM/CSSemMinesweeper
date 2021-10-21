@@ -1,26 +1,24 @@
 import random
 class Minesweeper:
-    def __init__(self, n, m, k):
-        self.n = 0
-        self.m = 0
-        self.k = 0
+    # def __init__(self, n, m, k):
+    #     self.n = 0
+    #     self.m = 0
+    #     self.k = 0
 
     def difficulty(x):
         diff = input("choose a difficulty: ")
         if diff == 
 
-    def generateMines(n, m, k):
-
-        for i in k:
-            random.randint(n)
-
-    def generateBoard(n, m, k):
+    def generate_board(n,m,k):
         array = [[0 for i in range(n)] for i in range(m)]
-
         for i in range(0,k):
             x, y = random.randint(0,n-1), random.randint(0,m-1)
             array[x][y] = "M"
-        print(array)
+        return array
 
-    def printBoard():
-        pass
+    def print_board(l):
+        for row in l:
+            for col in row:
+                print(col, end=' ')
+            print()
+    # found this solution on https://stackoverflow.com/questions/27140144/printing-2d-array-in-a-grid/27156853
