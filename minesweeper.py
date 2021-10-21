@@ -5,7 +5,7 @@ class Minesweeper:
     #     self.m = 0
     #     self.k = 0
 
-    def difficulty(x):
+    def difficulty():
         diff = input("choose a difficulty: ")
         if diff == 
 
