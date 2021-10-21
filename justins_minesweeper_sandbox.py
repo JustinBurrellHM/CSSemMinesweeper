@@ -1,11 +1,10 @@
 import random
 
-
 def generate_board(n, m, k):
     array = [[0 for i in range(n)] for i in range(m)]
     for i in range(0, k):
         y, x = random.randint(0, n-1), random.randint(0, m-1)
-        while array[x][y] == "M" & x:
+        while array[x][y] == "M":
             y, x = random.randint(0, n-1), random.randint(0, m-1)
         array[x][y] = "M"
 
@@ -14,7 +13,8 @@ def generate_board(n, m, k):
 
 game_board = generate_board(5, 6, 3)
 
-# def count_mines(a):
+def count_mines(x,y):
+    
 
 
 def print_board(a):
