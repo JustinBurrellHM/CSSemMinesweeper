@@ -33,16 +33,17 @@ class Array:
             self.array[x][y] = "M"
         return self.array
 
-    def check_mines(self, x, y):
+    def check_mines(self, n, m):
         #counter variable 
         counter = 0
         # iterate through all the potential points
-        for d in range(y-1, y+1):
-            for c in range(x-1, x+1):
-                print(d, c)
+        for d in range(m-1, m+2): # on easy, n = 5 but d is zero-indexed; it has to be from n-2 to n+1 to correspond to the right indices
+            print('d', d)
+            for c in range(n-1, n+2):
+                print('c', c)
                 if self.array[d][c] == "M":
                     counter += 1
-        self.array[x][y] = counter
+        self.array[n][m] = counter
     
     def count_mines(self, x, y):
         for a in range(self.array[y]):
@@ -59,10 +60,9 @@ class Array:
 if __name__ == "__main__":
     array = Array()
     array.generate_board()
+    array.check_mines(array.n, array.m)
+    array.count_mines(array.n, array.m)
     array.print_board()
-    # array.check_mines(array.n, array.m)
-    # array.count_mines(array.n, array.m)
-    # array.print_board()
 
 
 '''
