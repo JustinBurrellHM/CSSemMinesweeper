@@ -10,7 +10,7 @@ class Array:
     def set_difficulty(self):
         difficulty = input("What difficult do you want: Easy, Medium, or Hard? ")
         if difficulty == "Easy":
-            self.n = 5
+            self.n = 5   # 5 columns and 6 rows
             self.m = 6
             self.k = 3
             self.array = [[0 for i in range(self.n)] for i in range(self.m)]
@@ -26,22 +26,16 @@ class Array:
             self.array = [[0 for i in range(self.n)] for i in range(self.m)]
         
     def generate_board(self):
-        print(self.n, self.m, self.k)
         for i in range(0, self.k):
             y, x = random.randint(0, self.n-1), random.randint(0, self.m-1)
-            print('n, m', self.n, self.m)
-            print('x, y', x, y)
-            while self.array[y][x] == "M":
+            while self.array[x][y] == "M":
                 y, x = random.randint(0, self.n-1), random.randint(0, self.m-1)
-            self.array[y][x] = "M"
-            print('m')
-
+            self.array[x][y] = "M"
         return self.array
 
     def check_mines(self, x, y):
         #counter variable 
         counter = 0
-        print(x, y)
         # iterate through all the potential points
         for d in range(y-1, y+1):
             for c in range(x-1, x+1):
@@ -64,8 +58,8 @@ class Array:
 
 if __name__ == "__main__":
     array = Array()
-    print(array.array)
-    # array.generate_board()
+    array.generate_board()
+    array.print_board()
     # array.check_mines(array.n, array.m)
     # array.count_mines(array.n, array.m)
     # array.print_board()
