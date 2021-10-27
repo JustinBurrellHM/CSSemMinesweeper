@@ -8,7 +8,6 @@ class Array:
         self.array = []
         self.user_array = []
         self.game_over = False
-        self.set_difficulty()
 
     def set_difficulty(self):
         difficulty = input("What difficult do you want: Easy, Medium, or Hard? ")
@@ -64,48 +63,74 @@ class Array:
             return False
     
     def count_mines(self, c, r):
-        # old code:
-        
-        # for a in range(len(self.array[y-1])):
-        #     for b in range(len(self.array[x-1])):
-        #         print(self.check_mines(a,b))
-
-
-        # what I tried last night:
         for m in range(r):
             for n in range(c):
                 self.check_mines(m, n)
 
     def print_board(self):
-        for row in self.array:
+        for row in self.user_array:
             for col in row:
                 print(col, end=' ')
             print()
         
     def mark_board(self):
-        xinput = int(input("What x coordinate do you want?"))
-        yinput = int(input("What y coordinate do you want?"))
-        action = str(input("Do you wanna Mark, Unmark, or Reveal?"))
+        xinput = int(input("What x coordinate do you want? "))
+        yinput = int(input("What y coordinate do you want? "))
+        action = str(input("Choose an action: [M]ark, [U]nmark, [R]eveal "))
         if self.in_bounds(xinput, yinput):
-            if action == "Reveal":
+            if action == "R":
                 if self.array[xinput][yinput] == "M":
-                    self.game_over = True
-                # else:
+                    self.user_array[xinput][yinput] = "M"
+                    self.print_board()
+                    self.end_game('lost')
+                    return
+                else:
+                    self.user_array[xinput][yinput] = self.array[xinput][yinput]
+            if action == "M":
+                self.user_array[xinput][yinput] == "*"
+            if action == 'U':
+                self.user_array[xinput][yinput] == "□"
+
+            self.print_board()
+
+    def next_turn(self, r, c): #last buggy func
+        # trying to check if all the slots are either marked or revealed bc that wld mean they won the game w/o hitting mines
+        for m in range(r):
+            for n in range(c):
+                if self.user_array[m][n] != "□":
+                    self.mark_board()
+                else:
+                    self.end_game('won')
+
+    def start_game(self):
+        self.set_difficulty()
+        self.generate_board()
+        self.count_mines(self.r, self.c)
+        self.print_board()
+        self.mark_board()
+        self.next_turn(self.r, self.c)
+
+
+    def end_game(self, status):
+        if status == "lost":
+            print("Oh noooo you hit a mine")
+            restart = input('Would you like to try again: Y/N ')
+            if  restart == "Y":
+                self.start_game()
+            else:
+                return
+        if status == "won":
+            print("yay u won :D")
+            restart = input('Would you like to try again: Y/N ')
+            if  restart == "Y":
+                self.start_game()
+            else:
+                return
+            
 
 
     # found this solution on https://stackoverflow.com/questions/27140144/printing-2d-array-in-a-grid/27156853
 
 if __name__ == "__main__":
     array = Array()
-    array.generate_board()
-    array.count_mines(array.r, array.c)
-    array.print_board()
-    if self.game_over == True:
-
-
-
-'''
-[x-1, y-1], [x-1, y], [x-1, y+1],
-[x, y-1], [x, y], [x+1, y+1]
-[x+1, y-1], [x+1, y], [x+1, y+1]
-'''
+    array.start_game()
