@@ -37,6 +37,8 @@ class Array:
         #counter variable 
         counter = 0
         # iterate through all the potential points
+        # self.print_board()
+        # print('\n')
         for d in range(m-1, m+2): 
             for c in range(n-1, n+2):
                 if self.in_bounds(d,c):
@@ -44,6 +46,7 @@ class Array:
                         counter += 1
         
         self.array[m-1][n-1] = counter #[m-1][n-1] because of 0-idx
+        return counter
     
     def in_bounds(self, d, c):
         if d in range(self.r):
@@ -52,10 +55,18 @@ class Array:
         else:
             return False
     
-    def count_mines(self, x, y):
-        for a in range(len(self.array[y-1])):
-            for b in range(len(self.array[x-1])):
-                self.check_mines(a,b)
+    def count_mines(self, c, r):
+        # old code:
+        
+        # for a in range(len(self.array[y-1])):
+        #     for b in range(len(self.array[x-1])):
+        #         print(self.check_mines(a,b))
+
+
+        # what I tried last night:
+        for n in range(len(self.array[r]-1)):
+            for m in range(len(self.array[c]-1)):
+                print(self.check_mines(n,m))
 
     def print_board(self):
         for row in self.array:
@@ -67,8 +78,8 @@ class Array:
 if __name__ == "__main__":
     array = Array()
     array.generate_board()
-    array.print_board()
-    print('\n')
+    # array.print_board()
+    # print('\n')
     array.check_mines(array.c, array.r)
     array.count_mines(array.c, array.r)
     array.print_board()
