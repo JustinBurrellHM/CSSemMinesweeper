@@ -37,12 +37,13 @@ class Array:
         #counter variable 
         counter = 0
         # iterate through all the potential points
-        for d in range(m-1, m+2): # on easy, n = 5 but d is zero-indexed; it has to be from n-2 to n+1 to correspond to the right indices
+        for d in range(m-1, m+2): 
             for c in range(n-1, n+2):
                 if self.in_bounds(d,c):
                     if self.array[d][c] == "M":
                         counter += 1
-        self.array[n][m] = counter
+        
+        self.array[m-1][n-1] = counter #[m-1][n-1] because of 0-idx
     
     def in_bounds(self, d, c):
         if d in range(self.r):
@@ -52,8 +53,8 @@ class Array:
             return False
     
     def count_mines(self, x, y):
-        for a in range(self.array[y]):
-            for b in self.array[x]:
+        for a in range(len(self.array[y-1])):
+            for b in range(len(self.array[x-1])):
                 self.check_mines(a,b)
 
     def print_board(self):
@@ -66,6 +67,8 @@ class Array:
 if __name__ == "__main__":
     array = Array()
     array.generate_board()
+    array.print_board()
+    print('\n')
     array.check_mines(array.c, array.r)
     array.count_mines(array.c, array.r)
     array.print_board()
