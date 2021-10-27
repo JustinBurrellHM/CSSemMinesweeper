@@ -90,8 +90,8 @@ class Array:
             if action == "Reveal":
                 if self.array[xinput][yinput] == "M":
                     self.game_over = True
-                else:
-                    
+                # else:
+
 
     # found this solution on https://stackoverflow.com/questions/27140144/printing-2d-array-in-a-grid/27156853
 
