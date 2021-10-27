@@ -7,7 +7,6 @@ class Array:
         self.k = 0 # num of mines
         self.array = []
         self.user_array = []
-        self.game_over = False
 
     def set_difficulty(self):
         difficulty = input("What difficult do you want: [E]asy, [M]edium, or [H]ard? ")
@@ -86,21 +85,21 @@ class Array:
                     return
                 else:
                     self.user_array[xinput][yinput] = self.array[xinput][yinput]
+                    self.print_board()
+                    self.next_turn(self.r, self.c)
             if action == "M":
-                self.user_array[xinput][yinput] == "*"
+                self.user_array[xinput][yinput] = "⚐"
+                self.print_board()
+                self.next_turn(self.r, self.c)
             if action == 'U':
-                self.user_array[xinput][yinput] == "□"
+                self.user_array[xinput][yinput] = "□"
+                self.print_board()
+                self.next_turn(self.r, self.c)
 
-            self.print_board()
-            self.next_turn(self.r, self.c)
+            # self.print_board()
+            # self.next_turn(self.r, self.c)
 
     def next_turn(self, r, c): 
-        
-        '''
-        traverse all slots:
-            if all slots != "sqr":
-                self.mark_board()
-        '''
         empty_slots = 0
         for m in range(r):
             for n in range(c):
