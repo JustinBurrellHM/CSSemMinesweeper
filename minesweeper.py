@@ -107,7 +107,7 @@ class Array:
                 if self.user_array[m][n] == "□":
                     empty_slots += 1
 
-        if empty_slots == 0:
+        if empty_slots != 0:
             self.mark_board()
         else:
             self.end_game('won')
@@ -117,8 +117,8 @@ class Array:
         self.generate_board()
         self.count_mines(self.r, self.c)
         self.print_board()
-        self.mark_board()
         self.next_turn(self.r, self.c)
+        self.mark_board()
 
 
     def end_game(self, status):
