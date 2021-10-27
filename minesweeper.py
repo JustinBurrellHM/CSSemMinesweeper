@@ -78,21 +78,21 @@ class Array:
         action = str(input("Choose an action: [M]ark, [U]nmark, [R]eveal "))
         if self.in_bounds(xinput, yinput):
             if action == "R":
-                if self.array[xinput][yinput] == "M":
-                    self.user_array[xinput][yinput] = "M"
+                if self.array[yinput - 1][xinput - 1] == "M":
+                    self.user_array[yinput - 1][xinput - 1] = "M"
                     self.print_board()
                     self.end_game('lost')
                     return
                 else:
-                    self.user_array[xinput][yinput] = self.array[xinput][yinput]
+                    self.user_array[yinput - 1][xinput - 1] = self.array[yinput - 1][xinput - 1]
                     self.print_board()
                     self.next_turn(self.r, self.c)
             if action == "M":
-                self.user_array[xinput][yinput] = "⚐"
+                self.user_array[yinput - 1][xinput - 1] = "⚐"
                 self.print_board()
                 self.next_turn(self.r, self.c)
             if action == 'U':
-                self.user_array[xinput][yinput] = "□"
+                self.user_array[yinput - 1][xinput - 1] = "□"
                 self.print_board()
                 self.next_turn(self.r, self.c)
 
