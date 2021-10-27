@@ -92,9 +92,9 @@ class Array:
                 self.user_array[xinput][yinput] == "□"
 
             self.print_board()
+            self.next_turn()
 
-    def next_turn(self, r, c): #last buggy func
-        # trying to check if all the slots are either marked or revealed bc that wld mean they won the game w/o hitting mines
+    def next_turn(self, r, c): 
         
         '''
         traverse all slots:
