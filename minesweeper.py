@@ -82,7 +82,6 @@ class Array:
                     self.user_array[yinput - 1][xinput - 1] = "M"
                     self.print_board()
                     self.end_game('lost')
-                    return
                 else:
                     self.user_array[yinput - 1][xinput - 1] = self.array[yinput - 1][xinput - 1]
                     self.print_board()
