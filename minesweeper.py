@@ -10,20 +10,20 @@ class Array:
         self.game_over = False
 
     def set_difficulty(self):
-        difficulty = input("What difficult do you want: Easy, Medium, or Hard? ")
-        if difficulty == "Easy":
+        difficulty = input("What difficult do you want: [E]asy, [M]edium, or [H]ard? ")
+        if difficulty == "E":
             self.c = 5   # 5 columns and 6 rows
             self.r = 6
             self.k = 3
             self.array = [[0 for i in range(self.c)] for i in range(self.r)]
             self.user_array = [["□" for i in range(self.c)] for i in range(self.r)]
-        elif difficulty == "Medium":
+        elif difficulty == "M":
             self.c = 8
             self.r = 8
             self.k = 6
             self.array = [[0 for i in range(self.c)] for i in range(self.r)]
             self.user_array = [["□" for i in range(self.c)] for i in range(self.r)]
-        elif difficulty == "Hard":
+        elif difficulty == "H":
             self.c = 12
             self.r = 12
             self.k = 12
@@ -92,7 +92,7 @@ class Array:
                 self.user_array[xinput][yinput] == "□"
 
             self.print_board()
-            self.next_turn()
+            self.next_turn(self.r, self.c)
 
     def next_turn(self, r, c): 
         
@@ -130,7 +130,7 @@ class Array:
             else:
                 return
         if status == "won":
-            print("yay u won :D")
+            print("Yay u won :D")
             restart = input('Would you like to try again: Y/N ')
             if  restart == "Y":
                 self.start_game()
