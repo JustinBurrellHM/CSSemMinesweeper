@@ -6,7 +6,10 @@ class Array:
         self.r = 0 # num rows 
         self.k = 0 # num of mines
         self.array = []
-        self.set_difficulty()    
+        self.user_array = []
+        self.game_over = False
+        self.set_difficulty()
+
     def set_difficulty(self):
         difficulty = input("What difficult do you want: Easy, Medium, or Hard? ")
         if difficulty == "Easy":
@@ -14,16 +17,19 @@ class Array:
             self.r = 6
             self.k = 3
             self.array = [[0 for i in range(self.c)] for i in range(self.r)]
+            self.user_array = [["□" for i in range(self.c)] for i in range(self.r)]
         elif difficulty == "Medium":
             self.c = 8
             self.r = 8
             self.k = 6
             self.array = [[0 for i in range(self.c)] for i in range(self.r)]
+            self.user_array = [["□" for i in range(self.c)] for i in range(self.r)]
         elif difficulty == "Hard":
             self.c = 12
             self.r = 12
             self.k = 12
             self.array = [[0 for i in range(self.c)] for i in range(self.r)]
+            self.user_array = [["□" for i in range(self.c)] for i in range(self.r)]
         
     def generate_board(self):
         for i in range(0, self.k):
@@ -39,13 +45,15 @@ class Array:
         # iterate through all the potential points
         # self.print_board()
         # print('\n')
+        if self.array[m][n] == "M":
+            return
         for d in range(m-1, m+2): 
             for c in range(n-1, n+2):
                 if self.in_bounds(d,c):
                     if self.array[d][c] == "M":
                         counter += 1
         
-        self.array[m-1][n-1] = counter #[m-1][n-1] because of 0-idx
+        self.array[m][n] = counter #[m-1][n-1] because of 0-idx
         return counter
     
     def in_bounds(self, d, c):
@@ -64,25 +72,36 @@ class Array:
 
 
         # what I tried last night:
-        for n in range(len(self.array[r]-1)):
-            for m in range(len(self.array[c]-1)):
-                print(self.check_mines(n,m))
+        for m in range(r):
+            for n in range(c):
+                self.check_mines(m, n)
 
     def print_board(self):
         for row in self.array:
             for col in row:
                 print(col, end=' ')
             print()
+        
+    def mark_board(self):
+        xinput = int(input("What x coordinate do you want?"))
+        yinput = int(input("What y coordinate do you want?"))
+        action = str(input("Do you wanna Mark, Unmark, or Reveal?"))
+        if self.in_bounds(xinput, yinput):
+            if action == "Reveal":
+                if self.array[xinput][yinput] == "M":
+                    self.game_over = True
+                else:
+                    
+
     # found this solution on https://stackoverflow.com/questions/27140144/printing-2d-array-in-a-grid/27156853
 
 if __name__ == "__main__":
     array = Array()
     array.generate_board()
-    # array.print_board()
-    # print('\n')
-    array.check_mines(array.c, array.r)
-    array.count_mines(array.c, array.r)
+    array.count_mines(array.r, array.c)
     array.print_board()
+    if self.game_over == True:
+
 
 
 '''
