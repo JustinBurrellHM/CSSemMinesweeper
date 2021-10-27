@@ -95,12 +95,22 @@ class Array:
 
     def next_turn(self, r, c): #last buggy func
         # trying to check if all the slots are either marked or revealed bc that wld mean they won the game w/o hitting mines
+        
+        '''
+        traverse all slots:
+            if all slots != "sqr":
+                self.mark_board()
+        '''
+        empty_slots = 0
         for m in range(r):
             for n in range(c):
-                if self.user_array[m][n] != "□":
-                    self.mark_board()
-                else:
-                    self.end_game('won')
+                if self.user_array[m][n] == "□":
+                    empty_slots += 1
+
+        if empty_slots == 0:
+            self.mark_board()
+        else:
+            self.end_game('won')
 
     def start_game(self):
         self.set_difficulty()
