@@ -93,9 +93,6 @@ class Array:
                 #     self.next_turn(self.r, self.c)
                 elif self.array[yinput-1][xinput-1] == 0:
                     self.zero_chain((yinput-1), (xinput-1))
-                    for d in range(m-1, m+2):
-                        for c in range(n-1, n+2):
-                            #################################
                     self.print_board()
                     self.next_turn(self.r, self.c)
                 else:
@@ -115,15 +112,11 @@ class Array:
             # self.next_turn(self.r, self.c)
     
     def zero_chain(self, n, m):
-        self.user_array[n][m] = 0
-        # for d in range(m-1, m+2):
-        #     for c in range(n-1, n+2):
-        #         if self.in_bounds(d,c):
-        #             if self.array[d][c] == 0:
-        #                 self.user_array[d][c] = 0
-        #                 self.zero_chain(c, d)
-        #             else:
-        #                 continue
+        if self.in_bounds(m, n):
+            self.user_array[m][n] = 0
+
+        if self.array[m][n] != 0:
+            return
 
         for d in range(m-1, m+2):
             for c in range(n-1, n+2):
@@ -132,7 +125,7 @@ class Array:
                         self.user_array[d][c] = 0
                         self.zero_chain(c, d)
                     else:
-                        continue
+                        break
 
 
 
