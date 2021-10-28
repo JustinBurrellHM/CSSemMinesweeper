@@ -71,6 +71,11 @@ class Array:
             for col in row:
                 print(col, end=' ')
             print()
+        print('\n')
+        for row in self.array:
+            for col in row:
+                print(col, end=' ')
+            print()
         
     def mark_board(self):
         xinput = int(input("What x coordinate do you want? "))
@@ -82,6 +87,17 @@ class Array:
                     self.user_array[yinput - 1][xinput - 1] = "M"
                     self.print_board()
                     self.end_game('lost')
+                # elif self.array[yinput-1][xinput-1] == 0:
+                #     self.zero_chain((yinput-1), (xinput-1))
+                #     self.print_board()
+                #     self.next_turn(self.r, self.c)
+                elif self.array[yinput-1][xinput-1] == 0:
+                    self.zero_chain((yinput-1), (xinput-1))
+                    for d in range(m-1, m+2):
+                        for c in range(n-1, n+2):
+                            #################################
+                    self.print_board()
+                    self.next_turn(self.r, self.c)
                 else:
                     self.user_array[yinput - 1][xinput - 1] = self.array[yinput - 1][xinput - 1]
                     self.print_board()
@@ -97,6 +113,28 @@ class Array:
 
             # self.print_board()
             # self.next_turn(self.r, self.c)
+    
+    def zero_chain(self, n, m):
+        self.user_array[n][m] = 0
+        # for d in range(m-1, m+2):
+        #     for c in range(n-1, n+2):
+        #         if self.in_bounds(d,c):
+        #             if self.array[d][c] == 0:
+        #                 self.user_array[d][c] = 0
+        #                 self.zero_chain(c, d)
+        #             else:
+        #                 continue
+
+        for d in range(m-1, m+2):
+            for c in range(n-1, n+2):
+                if self.in_bounds(d,c):
+                    if self.array[d][c] == 0:
+                        self.user_array[d][c] = 0
+                        self.zero_chain(c, d)
+                    else:
+                        continue
+
+
 
     def next_turn(self, r, c): 
         empty_slots = 0
